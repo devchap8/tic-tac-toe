@@ -115,20 +115,20 @@ function Player(name, piece) {
 const Game = (function () {
     let turn = 0;
     const getTurns = () => turn;
-    // let players = [];
+    let players = [];
     function makeGamePlayers(name1, piece1, name2, piece2) {
-        // Returns are all arrays for later error checking and error messages
-        if(name1 === name2) return ["Player names cannot be identical"];
-        if(piece1 === piece2) return ["Player pieces cannot be identical"];
+        if(name1 === name2) return "Player names cannot be identical";
+        if(piece1 === piece2) return "Player pieces cannot be identical";
         if(piece1 === GameBoard.getNeutralPiece() || piece2 === GameBoard.getNeutralPiece())
-            return [`${GameBoard.getNeutralPiece()} is an invalid piece.`]; 
+            return `${GameBoard.getNeutralPiece()} is an invalid piece.`; 
         const player1 = Player(name1, piece1);
         const player2 = Player(name2, piece2);
-        return [player1, player2]
-        
+        players = [player1, player2];
+        return "Valid";
     }
-    function takeTurn(players, row, column) {
-        // see if players can be stores in the Game function rather than being returned as a variable and used here
+    const getPlayers = () => players;
+    function takeTurn(row, column) {
+        if (players.length = 0) return "You must make players before playing";
         const currentPlayer = players[turn % 0];
         if (row < 0 || row > 3) return "Invalid row. Must be 1, 2, or 3";
         if (column < 0 || column > 3) return "Invalid column. Must be 1, 2, or 3";
@@ -141,8 +141,26 @@ const Game = (function () {
     }
     function checkWon(player) {
         board = GameBoard.getGameBoard();
-        // implement win cons
+        const checkIfPlayerPiece = (piece) => piece === player.piece;
+        // horizontal win
+        board.forEach(function(row) {
+            if(row.every(checkIfPlayerPiece)) return gameWon(player);
+        })
+        // vertical win
+        for(let i=0;i<3;i++) {
+            if(board.every((row) => row[i] === player.piece)) return gameWon(player);
+        }
+        // diagonal win
+        const leftDiagonal = [board[0][0], board[1][1], board[2][2]];
+        const rightDiagonal = [board[0][2], board[1][1], board[2][0]];
+        if(leftDiagonal.every(checkIfPlayerPiece) || rightDiagonal.every(checkIfPlayerPiece)) return gameWon(player);
     }
-    return {getTurns, makeGamePlayers};
+    const gameWon = (player) => `${player} won in ${turn} turns!`;
+    const gameTied = () => "The game ended in a tie!";
+    function newGame() {
+        GameBoard.clearBoard();
+        turn = 0;
+    }
+    return {getTurns, makeGamePlayers, getPlayers, takeTurn, checkWon, gameWon, gameTied, newGame};
 })();
 
