@@ -81,18 +81,31 @@ Game
 */
 
 const GameBoard = (function() {
-    let row1 = ["#", "#", "#"];
-    let row2 = ["#", "#", "#"];
-    let row3 = ["#", "#", "#"];
+    let row1 = [];
+    let row2 = [];
+    let row3 = [];
     let board = [row1, row2, row3];
-
+    let neutralPiece = "#";
+    function clearBoard() {
+        board.forEach( function(row) {
+            row.length = 0;
+            for(let i=0;i<3;i++) {
+                row.push(neutralPiece);
+            }
+        })
+    }
+    clearBoard()
     const getGameBoard = () => [...board];
-
+    const getNeutralPiece = () => neutralPiece;
     function placePiece(piece, row, column) {
-
+        // Subtract 1 to match array indecies
+        row = row - 1;
+        column = column - 1;
+        board[row][column] = piece;
     }
 
-    return {getGameBoard};
+
+    return {clearBoard, getGameBoard, getNeutralPiece, placePiece};
 })();
 
 function Player(name, piece) {
