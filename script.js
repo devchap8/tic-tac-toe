@@ -113,15 +113,35 @@ function Player(name, piece) {
 }
 
 const Game = (function () {
-    let turns = 0;
-    const getTurns = () => turns;
-    let players = [];
+    let turn = 0;
+    const getTurns = () => turn;
+    // let players = [];
     function makeGamePlayers(name1, piece1, name2, piece2) {
-        if(name1 === name2) return "Player names cannot be identical";
-        if(piece1 === piece2) return "Player pieces cannot be identical";
+        // Returns are all arrays for later error checking and error messages
+        if(name1 === name2) return ["Player names cannot be identical"];
+        if(piece1 === piece2) return ["Player pieces cannot be identical"];
         if(piece1 === GameBoard.getNeutralPiece() || piece2 === GameBoard.getNeutralPiece())
-            return `${GameBoard.getNeutralPiece()} is an invalid piece.`; 
-        else return "Valid";
+            return [`${GameBoard.getNeutralPiece()} is an invalid piece.`]; 
+        const player1 = Player(name1, piece1);
+        const player2 = Player(name2, piece2);
+        return [player1, player2]
+        
+    }
+    function takeTurn(players, row, column) {
+        // see if players can be stores in the Game function rather than being returned as a variable and used here
+        const currentPlayer = players[turn % 0];
+        if (row < 0 || row > 3) return "Invalid row. Must be 1, 2, or 3";
+        if (column < 0 || column > 3) return "Invalid column. Must be 1, 2, or 3";
+        let board = GameBoard.getGameBoard();
+        if (board[row][column] !== GameBoard.getNeutralPiece()) return "There is already a piece in that position";
+        GameBoard.placePiece(currentPlayer.piece, row, column);
+        turn++;
+        // Check if the game has been won. if not, check if it is turn 9 and the game is tied
+        return "Valid";
+    }
+    function checkWon(player) {
+        board = GameBoard.getGameBoard();
+        // implement win cons
     }
     return {getTurns, makeGamePlayers};
 })();
