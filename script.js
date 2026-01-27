@@ -103,14 +103,26 @@ const GameBoard = (function() {
         column = column - 1;
         board[row][column] = piece;
     }
-
-
     return {clearBoard, getGameBoard, getNeutralPiece, placePiece};
 })();
 
 function Player(name, piece) {
     const getName = () => name;
     const getPiece = () => piece;
-
     return {getName, getPiece};
 }
+
+const Game = (function () {
+    let turns = 0;
+    const getTurns = () => turns;
+    let players = [];
+    function makeGamePlayers(name1, piece1, name2, piece2) {
+        if(name1 === name2) return "Player names cannot be identical";
+        if(piece1 === piece2) return "Player pieces cannot be identical";
+        if(piece1 === GameBoard.getNeutralPiece() || piece2 === GameBoard.getNeutralPiece())
+            return `${GameBoard.getNeutralPiece()} is an invalid piece.`; 
+        else return "Valid";
+    }
+    return {getTurns, makeGamePlayers};
+})();
+
