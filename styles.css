@@ -31,11 +31,6 @@ body > * {
     background-color: aqua;
 }
 
-.gameArea {
-    flex: 1.5;
-    background-color: lightgray;
-}
-
 .leftAreaContent,
 .rightAreaContent {
     display: flex;
@@ -55,16 +50,46 @@ body > * {
 .playerImage {
     height: var(--image-size);
     width: var(--image-size);
+    border-radius: 30px;
 }
 
-.playerNumber {
-    font-size: 3rem;
+.playerName {
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
-.playerName {
+.playerWins,
+.ties {
     font-size: 1.5rem;
 }
 
+.gameArea {
+    flex: 1.5;
+    background-color: lightgray;
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: 0 20px;
+}
+
+.gameGrid {
+    /* border: 1px solid black; */
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 125px);
+    grid-template-rows: repeat(3, 125px);
+    gap: 20px;
+    justify-content: center;
+    align-content: center;
+}
+
+.gridBlock {
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
 
