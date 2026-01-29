@@ -6,15 +6,24 @@
 
 :root {
     --image-size: 200px;
+    --dark-gray: #1a2b33;
+    --less-dark-gray: #263e49;
+    --even-less-dark-gray: #375868;
+    --dark-brown: #684737;
+    --light-brown: #976851;
 }
 
 body {
     display: flex;
+    background-color: var(--dark-gray);
+
 }
 
 body > * {
     height: 100vh;
-}
+} 
+
+/* Left and right sides */
 
 .leftArea,
 .rightArea {
@@ -24,11 +33,11 @@ body > * {
 }
 
 .leftArea {
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
 }
 
 .rightArea {
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .leftAreaContent,
@@ -45,6 +54,7 @@ body > * {
 .leftPlayerText,
 .rightPlayerText {
     text-align: center;
+    color: var(--dark-brown);
 }
 
 .playerImage {
@@ -62,11 +72,14 @@ body > * {
 .playerWins,
 .ties {
     font-size: 1.5rem;
+    color: var(--dark-brown);
 }
+
+/* Game Area */
 
 .gameArea {
     flex: 1.5;
-    background-color: lightgray;
+    /* background-color: lightgray; */
     display: grid;
     grid-template-rows: 100px 1fr 100px;
     grid-template-columns: 1fr;
@@ -91,5 +104,19 @@ body > * {
     border-radius: 20px;
     border: none;
     cursor: pointer;
+    background-color: var(--less-dark-gray);
 }
 
+.gridBlock:hover {
+    background-color: var(--even-less-dark-gray);
+}
+
+.gameTopButtons img {
+    filter: invert(23%) sepia(7%) saturate(5865%) hue-rotate(338deg) brightness(80%) contrast(64%);
+}
+
+.gameTopButtons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
