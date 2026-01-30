@@ -111,12 +111,23 @@ body > * {
     background-color: var(--even-less-dark-gray);
 }
 
+.gameTopButtons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .gameTopButtons img {
     filter: invert(23%) sepia(7%) saturate(5865%) hue-rotate(338deg) brightness(80%) contrast(64%);
+    transition: height .5s;
 }
 
 .gameTopButtons button {
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+.gameTopButtons button:hover img {
+    height: 75px;
 }
