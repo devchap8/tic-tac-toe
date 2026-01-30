@@ -94,15 +94,22 @@ const Game = (function () {
 
 function addGridEventListeners() {
     const gameGrid = document.querySelector(".gameGrid");
-    gameGrid.addEventListener("click", function (event) {
-        if (event.target.classList.contains("gridBlock")) {
-            const row = event.target.getAttribute("row");
-            const col = event.target.getAttribute("col");
-            if (Game.checkValidMove(row, col) === "Valid") {
-                event.target.innerHTML = Game.takeTurn(row, col);
-            }
+    gameGrid.addEventListener("click", addPieceToGrid);
+}
+
+function removeGridEventListeners() {
+    const gameGrid = document.querySelector(".gameGrid");
+    gameGrid.removeEventListener("click", addPieceToGrid);
+}
+
+function addPieceToGrid(event) {
+    if (event.target.classList.contains("gridBlock")) {
+        const row = event.target.getAttribute("row");
+        const col = event.target.getAttribute("col");
+        if (Game.checkValidMove(row, col) === "Valid") {
+            event.target.innerHTML = Game.takeTurn(row, col);
         }
-    });
+    }
 }
 
 
