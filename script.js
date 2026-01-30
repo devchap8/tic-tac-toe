@@ -84,3 +84,15 @@ const Game = (function () {
     }
     return {getTurns, makeGamePlayers, getPlayers, takeTurn, checkWon, gameWon, gameTied, newGame};
 })();
+
+/*
+Adding event listeners to play grid with event delegation
+
+reference: https://javascript.info/event-delegation
+but add an event listener instead of doing .onclick
+
+Add event listener to gameGrid on "click"
+Function: 
+    Check if event.target.classList.contains("gridBlock") and if not, return
+    Check for the column and row values with getAttribute()
+*/
