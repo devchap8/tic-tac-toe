@@ -122,8 +122,19 @@ function hideGameScreen() {
     gameScreen.classList.add("hidden");
 }
 
+function showSelectScreen() {
+    let selectScreen = document.querySelector(".selectScreen");
+    selectScreen.classList.remove("hidden");
+}
+
+function hideSelectScreen() {
+    let selectScreen = document.querySelector(".selectScreen");
+    selectScreen.classList.add("hidden");
+}
+
 
 
 addGridEventListeners();
 Game.makeGamePlayers("Player1", "X", "Player2", "O");
 // showGameScreen();
+// hideSelectScreen();

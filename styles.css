@@ -136,10 +136,6 @@ body > * {
 
 /* Character Select */
 
-.hidden {
-    display: none;
-}
-
 .rift {
     height: 98%;
 }
@@ -180,3 +176,8 @@ body > * {
 } */
 
 
+ /* Hide screens (keep at bottom for cascade) */
+
+.hidden {
+    display: none;
+}
