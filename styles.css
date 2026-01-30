@@ -14,14 +14,16 @@
 }
 
 body {
-    display: flex;
     background-color: var(--dark-gray);
-
 }
 
 body > * {
     height: 100vh;
 } 
+
+.gameScreen {
+    display: flex;
+}
 
 /* Left and right sides */
 

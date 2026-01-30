@@ -113,22 +113,17 @@ function addPieceToGrid(event) {
 }
 
 function showGameScreen() {
-    let gameScreen = document.querySelectorAll(".gameScreen");
-    gameScreen = Array.from(gameScreen);
-    for (section of gameScreen) {
-        section.classList.remove("hidden");
-    }
+    let gameScreen = document.querySelector(".gameScreen");
+    gameScreen.classList.remove("hidden");
 }
 
 function hideGameScreen() {
-    let gameScreen = document.querySelectorAll(".gameScreen");
-    gameScreen = Array.from(gameScreen);
-    for (section of gameScreen) {
-        section.classList.add("hidden");
-    }
+    let gameScreen = document.querySelector(".gameScreen");
+    gameScreen.classList.add("hidden");
 }
 
 
 
 addGridEventListeners();
 Game.makeGamePlayers("Player1", "X", "Player2", "O");
+showGameScreen()

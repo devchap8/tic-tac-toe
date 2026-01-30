@@ -8,43 +8,45 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="leftArea hidden gameScreen">
-        <div class="leftAreaContent">
-            <img src="images/placeholder.webp" height="150px" class="playerImage">
-            <div class="leftPlayerText">
-                <div class="playerName">Player Name</div>
-                <div class="playerWins">Wins: 0</div>
+    <div class="gameScreen hidden">
+        <div class="leftArea">
+            <div class="leftAreaContent">
+                <img src="images/placeholder.webp" height="150px" class="playerImage">
+                <div class="leftPlayerText">
+                    <div class="playerName">Player Name</div>
+                    <div class="playerWins">Wins: 0</div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="gameArea hidden gameScreen">
-        <div class="gameTopButtons">
-            <button>
-                <img src="images/refresh.svg" height="50px" alt="refresh icon">
-            </button>
-            <button>
-                <img src="images/exit.svg" height="50px" alt="exit icon">
-            </button>
+        <div class="gameArea">
+            <div class="gameTopButtons">
+                <button>
+                    <img src="images/refresh.svg" height="50px" alt="refresh icon">
+                </button>
+                <button>
+                    <img src="images/exit.svg" height="50px" alt="exit icon">
+                </button>
+            </div>
+            <div class="gameGrid">
+                <button class="gridBlock" row="1" col="1"></button>
+                <button class="gridBlock" row="1" col="2"></button>
+                <button class="gridBlock" row="1" col="3"></button>
+                <button class="gridBlock" row="2" col="1"></button>
+                <button class="gridBlock" row="2" col="2"></button>
+                <button class="gridBlock" row="2" col="3"></button>
+                <button class="gridBlock" row="3" col="1"></button>
+                <button class="gridBlock" row="3" col="2"></button>
+                <button class="gridBlock" row="3" col="3"></button>
+            </div>
+            <div class="ties">Ties: 0</div>
         </div>
-        <div class="gameGrid">
-            <button class="gridBlock" row="1" col="1"></button>
-            <button class="gridBlock" row="1" col="2"></button>
-            <button class="gridBlock" row="1" col="3"></button>
-            <button class="gridBlock" row="2" col="1"></button>
-            <button class="gridBlock" row="2" col="2"></button>
-            <button class="gridBlock" row="2" col="3"></button>
-            <button class="gridBlock" row="3" col="1"></button>
-            <button class="gridBlock" row="3" col="2"></button>
-            <button class="gridBlock" row="3" col="3"></button>
-        </div>
-        <div class="ties">Ties: 0</div>
-    </div>
-    <div class="rightArea hidden gameScreen">
-        <div class="rightAreaContent">
-            <img src="images/placeholder.webp" height="150px" class="playerImage">
-            <div class="rightPlayerText">
-                <div class="playerName">Player Name</div>
-                <div class="playerWins">Wins: 0</div>
+        <div class="rightArea">
+            <div class="rightAreaContent">
+                <img src="images/placeholder.webp" height="150px" class="playerImage">
+                <div class="rightPlayerText">
+                    <div class="playerName">Player Name</div>
+                    <div class="playerWins">Wins: 0</div>
+                </div>
             </div>
         </div>
     </div>
