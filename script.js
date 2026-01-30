@@ -45,13 +45,18 @@ const Game = (function () {
         return "Valid";
     }
     const getPlayers = () => players;
-    function takeTurn(row, column) {
+    function checkValidMove(row, column) {
         if (players.length === 0) return "You must make players before playing";
-        const currentPlayer = players[turn % 2];
         if (row < 0 || row > 3) return "Invalid row. Must be 1, 2, or 3";
         if (column < 0 || column > 3) return "Invalid column. Must be 1, 2, or 3";
         let board = GameBoard.getGameBoard();
         if (board[row - 1][column - 1] !== GameBoard.getNeutralPiece()) return "There is already a piece in that position";
+        return "Valid";
+    }
+    function takeTurn(row, column) {
+        if(checkValidMove(row, column) !== "Valid") return "Invalid";
+        let board = GameBoard.getGameBoard();
+        const currentPlayer = players[turn % 2];
         GameBoard.placePiece(currentPlayer.getPiece(), row, column);
         turn++;
         if (checkWon(currentPlayer)) return gameWon(currentPlayer);
@@ -82,6 +87,19 @@ const Game = (function () {
         GameBoard.clearBoard();
         turn = 0;
     }
-    return {getTurns, makeGamePlayers, getPlayers, takeTurn, checkWon, gameWon, gameTied, newGame};
+    return {getTurns, makeGamePlayers, getPlayers, takeTurn, checkWon, gameWon, gameTied, newGame, checkValidMove};
 })();
 
+/*
+Adding event listeners to play grid with event delegation
+
+reference: https://javascript.info/event-delegation
+but add an event listener instead of doing .onclick
+
+Add event listener to gameGrid on "click"
+Function: 
+    Check if event.target.classList.contains("gridBlock") and if not, return
+    Check for the column and row values with getAttribute()
+    Check if the move is a valid move with checkValidMove()
+        if it is, change the buttons innerHTML and call takeTurn with that row and column
+*/
