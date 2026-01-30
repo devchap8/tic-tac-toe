@@ -61,7 +61,9 @@ const Game = (function () {
         turn++;
         if (checkWon(currentPlayer)) return gameWon(currentPlayer);
         if (turn >= 9) return gameTied();
-        return "Valid";
+        return currentPlayer.getPiece();
+        // Return piece to insert into the gameboard
+        // This is temporary, final game will have pictures inserted instead of pieces
     }
     function checkWon(player) {
         const board = GameBoard.getGameBoard();
@@ -90,16 +92,20 @@ const Game = (function () {
     return {getTurns, makeGamePlayers, getPlayers, takeTurn, checkWon, gameWon, gameTied, newGame, checkValidMove};
 })();
 
-/*
-Adding event listeners to play grid with event delegation
+function addGridEventListeners() {
+    const gameGrid = document.querySelector(".gameGrid");
+    gameGrid.addEventListener("click", function (event) {
+        if (event.target.classList.contains("gridBlock")) {
+            const row = event.target.getAttribute("row");
+            const col = event.target.getAttribute("col");
+            if (Game.checkValidMove(row, col) === "Valid") {
+                event.target.innerHTML = Game.takeTurn(row, col);
+            }
+        }
+    });
+}
 
-reference: https://javascript.info/event-delegation
-but add an event listener instead of doing .onclick
 
-Add event listener to gameGrid on "click"
-Function: 
-    Check if event.target.classList.contains("gridBlock") and if not, return
-    Check for the column and row values with getAttribute()
-    Check if the move is a valid move with checkValidMove()
-        if it is, change the buttons innerHTML and call takeTurn with that row and column
-*/
+
+addGridEventListeners();
+Game.makeGamePlayers("Player1", "X", "Player2", "O");
