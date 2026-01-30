@@ -131,3 +131,9 @@ body > * {
 .gameTopButtons button:hover img {
     height: 75px;
 }
+
+/* Character Select */
+
+.hidden {
+    display: none;
+}

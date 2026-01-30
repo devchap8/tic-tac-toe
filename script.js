@@ -112,6 +112,22 @@ function addPieceToGrid(event) {
     }
 }
 
+function showGameScreen() {
+    let gameScreen = document.querySelectorAll(".gameScreen");
+    gameScreen = Array.from(gameScreen);
+    for (section of gameScreen) {
+        section.classList.remove("hidden");
+    }
+}
+
+function hideGameScreen() {
+    let gameScreen = document.querySelectorAll(".gameScreen");
+    gameScreen = Array.from(gameScreen);
+    for (section of gameScreen) {
+        section.classList.add("hidden");
+    }
+}
+
 
 
 addGridEventListeners();
