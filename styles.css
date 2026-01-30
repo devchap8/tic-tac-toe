@@ -34,13 +34,13 @@ body > * {
     align-items: center;
 }
 
-.leftArea {
-    /* background-color: lightcoral; */
+/* .leftArea {
+    background-color: lightcoral;
 }
 
 .rightArea {
-    /* background-color: aqua; */
-}
+    background-color: aqua;
+} */
 
 .leftAreaContent,
 .rightAreaContent {
@@ -139,3 +139,44 @@ body > * {
 .hidden {
     display: none;
 }
+
+.rift {
+    height: 98%;
+}
+
+.selectScreen {
+    display: flex;
+}
+
+.catSelect,
+.dogSelect {
+    height: 100%;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 1fr 1fr;
+    justify-items: center;
+}
+
+.selectScreen > div > h1 {
+    grid-column: span 2;
+    align-self: center;
+}
+
+.catDiv,
+.dogDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* .catSelect {
+    background-color: lightcoral;
+}
+
+.dogSelect {
+    background-color: lightgreen;
+} */
+
+

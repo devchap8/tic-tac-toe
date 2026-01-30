@@ -126,4 +126,4 @@ function hideGameScreen() {
 
 addGridEventListeners();
 Game.makeGamePlayers("Player1", "X", "Player2", "O");
-showGameScreen()
+// showGameScreen();
