@@ -138,3 +138,45 @@ addGridEventListeners();
 Game.makeGamePlayers("Player1", "X", "Player2", "O");
 // showGameScreen();
 // hideSelectScreen();
+
+/*
+in Game:
+private list playerWins[player1Wins, ties, player2Wins], all = 0
+function givePlayer1Win - ++playerWins[0]
+function giveTie - ++playerWins[1]
+function givePlayer2Win - ++playerWins[2]
+function getPlayerWins - return [...playerWins]
+function startGame
+    if Game.getPlayers !== "Valid" return 
+    set playerWins = [0, 0, 0]
+    hide selectScreen, show gameScreen
+    querySelect playerImage and playerText on both sides,
+    playerName.innerHTML = getGamePlayers()[playerName index]
+    playerImage.setAttribute("src", getGamePlayers()[playerPiece index])
+    newRound()
+function newRound
+    GameBoard.clearBoard()
+    setPlayerWins()
+function setPlayerWins
+    querySelect ties and both playerWins
+    set their innerHTML = `Wins/Ties: ${getPlayerWins[index]}`
+
+select screen event listeners:
+Function addSelectScreenEventListeners
+^^Function addSelectButtonEventListeners
+    Target all select screen > div > div with querySelectorAll
+    Add event listeners with a function that on click:
+        event.target.classList.add("selected") 
+^^Function addReadyButtonEventListeners
+    target with querySelector(".ready"), function, on click:
+        make private list playerImgList with img file paths
+        make private playerInfo list
+        query select .selected, for each:
+            select .lastElementChild (selectName div)
+            set playerName variable = element.innerHTML
+            get imgIndex with getAttribute("imgIndex")
+            set playerPiece to playerImageList[imgIndex]
+            add name, piece to playerInfo list
+        with playerInfoList items, Game.makeGamePlayers
+        startGame()
+*/          

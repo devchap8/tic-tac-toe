@@ -157,6 +157,8 @@ body > * {
 .selectScreen > div > h1 {
     grid-column: span 2;
     align-self: center;
+    font-size: 4rem;
+    color: var(--dark-brown);
 }
 
 .catDiv,
@@ -165,6 +167,35 @@ body > * {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    cursor: pointer;
+}
+
+.catDiv:hover .selectName,
+.dogDiv:hover .selectName {
+    border-bottom: 1px solid var(--dark-brown);
+    font-size: 2.5rem;
+}
+
+.selectName {
+    font-size: 2rem;
+    color: var(--light-brown);
+    transition: .5s;
+}
+
+.ready {
+    height: 70px;
+    width: 200px;
+    align-self: center;
+    cursor: pointer;
+    border: 2px solid var(--dark-brown);
+    border-radius: 15px;
+    background-color: var(--dark-brown);
+    font-size: 2rem;
+    color: aliceblue;
+}
+
+.ready:hover {
+    background-color: var(--light-brown);
 }
 
 /* .catSelect {
