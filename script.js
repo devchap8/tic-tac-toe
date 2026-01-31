@@ -89,7 +89,40 @@ const Game = (function () {
         GameBoard.clearBoard();
         turn = 0;
     }
-    return {getTurns, makeGamePlayers, getPlayers, takeTurn, checkWon, gameWon, gameTied, newGame, checkValidMove};
+    const playerWins = [0, 0, 0];
+    const getPlayerWins = () => [...playerWins];
+    function givePlayer1Win() {playerWins[0]++;}
+    function givePlayer2Win() {playerWins[2]++;}
+    function giveTie() {playerWins[1]++;}
+    function startGame() {
+        if(game.getPlayers().length !== 2) return;
+        playerWins = [0, 0, 0];
+        hideSelectScreen();
+        showGameScreen();
+        let playerImages = document.querySelectorAll(".gameScreen > div > div > img");
+        playerImages = Array.from(playerImages);
+        let playerNames = document.querySelectorAll(".playerName");
+        playerImages[0].setAttribute("src", Game.getPlayers()[0].getPiece());
+        playerImages[1].setAttribute("src", Game.getPlayers()[1].getPiece());
+        playerNames[0].innerHTML = `Name: ${Game.getPlayers()[0].getName()}`;
+        playerNames[1].innerHTML = `Name: ${Game.getPlayers()[1].getName()}`;
+        newRound();
+    }
+    function newRound() {
+        GameBoard.clearBoard();
+        setPlayerWins();
+    }
+    function setPlayerWins() {
+        let playerWins = document.querySelectorAll(".playerWins");
+        playerWins = Array.from(playerWins);
+        const gameTies = document.querySelector(".ties");
+        playerWins[0].innerHTML = `${getPlayerWins()[0]}`;
+        playerWins[1].innerHTML = `${getPlayerWins()[2]}`;
+        gameTies.innerHTML = `${getPlayerWins()[1]}`;
+        
+    }
+    return {getTurns, makeGamePlayers, getPlayers, takeTurn, checkWon, gameWon, gameTied, newGame, 
+        checkValidMove, getPlayerWins, givePlayer1Win, givePlayer2Win, giveTie, startGame, newRound, setPlayerWins};
 })();
 
 function addGridEventListeners() {

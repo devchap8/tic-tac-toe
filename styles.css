@@ -161,6 +161,10 @@ body > * {
     color: var(--dark-brown);
 }
 
+.selectScreen > div > div > img {
+    height: 200px;
+}
+
 .catDiv,
 .dogDiv {
     display: flex;
@@ -171,7 +175,8 @@ body > * {
 }
 
 .catDiv:hover .selectName,
-.dogDiv:hover .selectName {
+.dogDiv:hover .selectName,
+.selected .selectName {
     border-bottom: 1px solid var(--dark-brown);
     font-size: 2.5rem;
 }
