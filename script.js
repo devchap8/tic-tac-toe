@@ -188,7 +188,6 @@ function selectPlayer(event) {
     if(event.target.classList.contains("charSelect") || event.target.parentElement.classList.contains("charSelect")) {
         let charSelect;
         event.target.classList.contains("charSelect") ? charSelect = event.target : charSelect = event.target.parentElement;
-        console.log(charSelect);
         if(charSelect.classList.contains("selected")) charSelect.classList.remove("selected");
         else if(charSelect.classList.contains("catDiv") && checkCatSelected() === false) {
             charSelect.classList.add("selected")
@@ -196,7 +195,6 @@ function selectPlayer(event) {
         else if(charSelect.classList.contains("dogDiv") && checkDogSelected() === false) {
             charSelect.classList.add("selected")
         }
-        charSelect.classList.contains("selected") ? charSelect.classList.remove("selected") : charSelect.classList.add("selected");
     }
 }
 
