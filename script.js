@@ -188,7 +188,45 @@ function selectPlayer(event) {
     if(event.target.classList.contains("charSelect") || event.target.parentElement.classList.contains("charSelect")) {
         let charSelect;
         event.target.classList.contains("charSelect") ? charSelect = event.target : charSelect = event.target.parentElement;
+        console.log(charSelect);
+        if(charSelect.classList.contains("selected")) charSelect.classList.remove("selected");
+        else if(charSelect.classList.contains("catDiv") && checkCatSelected() === false) {
+            charSelect.classList.add("selected")
+        }
+        else if(charSelect.classList.contains("dogDiv") && checkDogSelected() === false) {
+            charSelect.classList.add("selected")
+        }
         charSelect.classList.contains("selected") ? charSelect.classList.remove("selected") : charSelect.classList.add("selected");
+    }
+}
+
+let catDivs = document.querySelectorAll(".catDiv");
+let dogDivs = document.querySelectorAll(".dogDiv");
+catDivs = Array.from(catDivs);
+dogDivs = Array.from(dogDivs);
+
+function checkCatSelected() {
+    let catSelected = false;
+    for(cat of catDivs) {
+        if (cat.classList.contains("selected")) catSelected = true;
+    }
+    return catSelected;
+}
+
+function checkDogSelected() {
+    let dogSelected = false;
+    for(dog of dogDivs) {
+        if (dog.classList.contains("selected")) dogSelected = true;
+    }
+    return dogSelected;
+}
+
+function unselectAll() {
+    for (cat of catDivs) {
+        if (cat.classList.contains("selected")) cat.classList.remove("selected");
+    }
+    for (dog of dogDivs) {
+        if (dog.classList.contains("selected")) dog.classList.remove("selected");
     }
 }
 
