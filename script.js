@@ -228,9 +228,41 @@ function unselectAll() {
     }
 }
 
+function addReadyButtonEventListener() {
+    const readyButton = document.querySelector(".ready");
+    readyButton.addEventListener("click", startNewGameState)
+}
+
+function startNewGameState() {
+    const playerImages = [
+        "images/siamese.jpg",
+        "images/tabby.jpg",
+        "images/bombay.jpg",
+        "images/maineCoon.jpg",
+        "images/goldenRetriever.jpg",
+        "images/husky.jpg",
+        "images/pug.jpg",
+        "images/saintBernard.jpg"
+    ];
+    let players = document.querySelectorAll(".selected");
+    players = Array.from(players);
+    if(players.length !== 2) return;
+    let playerInfo = [];
+    for(player of players) {
+        let playerName = player.lastElementChild.textContent
+        playerInfo.push(playerName);
+        let playerImgIndex = player.firstElementChild.getAttribute("imgIndex");
+        let playerImg = playerImages[+playerImgIndex];
+        playerInfo.push(`<img src="${playerImg}" height="125px">`);
+    }
+    Game.makeGamePlayers(...playerInfo);
+    Game.newGame();
+    hideSelectScreen();
+    showGameScreen();
+}
+
 addGridEventListeners();
-addSelectButtonEventListeners();
-Game.makeGamePlayers("Player1", "X", "Player2", "O");
+addSelectScreenEventListeners();
 // showGameScreen();
 // hideSelectScreen();
 
