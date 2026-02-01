@@ -97,23 +97,25 @@ const Game = (function () {
         turn = 0;
     }
     // new
-    const playerWins = [0, 0, 0];
+    let playerWins = [0, 0, 0];
     const getPlayerWins = () => [...playerWins];
     function givePlayer1Win() {playerWins[0]++;}
     function givePlayer2Win() {playerWins[1]++;}
     function giveTie() {playerWins[2]++;}
     function startGame() {
-        if(game.getPlayers().length !== 2) return;
+        if(Game.getPlayers().length !== 2) return;
         playerWins = [0, 0, 0];
         hideSelectScreen();
         showGameScreen();
         let playerImages = document.querySelectorAll(".gameScreen > div > div > img");
         playerImages = Array.from(playerImages);
         let playerNames = document.querySelectorAll(".playerName");
-        playerImages[0].setAttribute("src", Game.getPlayers()[0].getPiece());
-        playerImages[1].setAttribute("src", Game.getPlayers()[1].getPiece());
-        playerNames[0].innerHTML = `Name: ${Game.getPlayers()[0].getName()}`;
-        playerNames[1].innerHTML = `Name: ${Game.getPlayers()[1].getName()}`;
+        let piecePicList1 = Game.getPlayers()[0].getPiece().split('"');
+        let piecePicList2 = Game.getPlayers()[1].getPiece().split('"');
+        playerImages[0].setAttribute("src", piecePicList1[1]);
+        playerImages[1].setAttribute("src", piecePicList2[1]);
+        playerNames[0].innerHTML = `${Game.getPlayers()[0].getName()}`;
+        playerNames[1].innerHTML = `${Game.getPlayers()[1].getName()}`;
         newRound();
     }
     function newRound() {
@@ -256,7 +258,7 @@ function startNewGameState() {
         playerInfo.push(`<img src="${playerImg}" height="125px">`);
     }
     Game.makeGamePlayers(...playerInfo);
-    Game.newGame();
+    Game.startGame();
     hideSelectScreen();
     showGameScreen();
 }
