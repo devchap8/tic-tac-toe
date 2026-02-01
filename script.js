@@ -83,17 +83,25 @@ const Game = (function () {
         if(leftDiagonal.every(checkIfPlayerPiece) || rightDiagonal.every(checkIfPlayerPiece)) won = true;
         return won;
     }
-    const gameWon = (player) => `${player.getName()} won in ${turn} turns!`;
-    const gameTied = () => "The game ended in a tie!";
+    const gameWon = function(player) { 
+        const players = getPlayers();
+        players.indexOf(player) === 0 ? givePlayer1Win() : givePlayer2Win();
+        return `${player.getName()} won in ${turn} turns!`; 
+    }
+    const gameTied = function() { 
+        giveTie();
+        "The game ended in a tie!"; 
+    }
     function newGame() {
         GameBoard.clearBoard();
         turn = 0;
     }
+    // new
     const playerWins = [0, 0, 0];
     const getPlayerWins = () => [...playerWins];
     function givePlayer1Win() {playerWins[0]++;}
-    function givePlayer2Win() {playerWins[2]++;}
-    function giveTie() {playerWins[1]++;}
+    function givePlayer2Win() {playerWins[1]++;}
+    function giveTie() {playerWins[2]++;}
     function startGame() {
         if(game.getPlayers().length !== 2) return;
         playerWins = [0, 0, 0];
@@ -117,9 +125,8 @@ const Game = (function () {
         playerWins = Array.from(playerWins);
         const gameTies = document.querySelector(".ties");
         playerWins[0].innerHTML = `${getPlayerWins()[0]}`;
-        playerWins[1].innerHTML = `${getPlayerWins()[2]}`;
-        gameTies.innerHTML = `${getPlayerWins()[1]}`;
-        
+        playerWins[1].innerHTML = `${getPlayerWins()[1]}`;
+        gameTies.innerHTML = `${getPlayerWins()[2]}`;
     }
     return {getTurns, makeGamePlayers, getPlayers, takeTurn, checkWon, gameWon, gameTied, newGame, 
         checkValidMove, getPlayerWins, givePlayer1Win, givePlayer2Win, giveTie, startGame, newRound, setPlayerWins};
@@ -165,9 +172,28 @@ function hideSelectScreen() {
     selectScreen.classList.add("hidden");
 }
 
+// new 
 
+function addSelectScreenEventListeners() {
+    addSelectButtonEventListeners();
+    addReadyButtonEventListener();
+}
+
+function addSelectButtonEventListeners() {
+    const selectScreen = document.querySelector(".selectScreen");
+    selectScreen.addEventListener("click", selectPlayer)
+}
+
+function selectPlayer(event) {
+    if(event.target.classList.contains("charSelect") || event.target.parentElement.classList.contains("charSelect")) {
+        let charSelect;
+        event.target.classList.contains("charSelect") ? charSelect = event.target : charSelect = event.target.parentElement;
+        charSelect.classList.contains("selected") ? charSelect.classList.remove("selected") : charSelect.classList.add("selected");
+    }
+}
 
 addGridEventListeners();
+addSelectButtonEventListeners();
 Game.makeGamePlayers("Player1", "X", "Player2", "O");
 // showGameScreen();
 // hideSelectScreen();

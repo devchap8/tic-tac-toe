@@ -161,17 +161,19 @@ body > * {
     color: var(--dark-brown);
 }
 
-.selectScreen > div > div > img {
-    height: 200px;
+.selectScreen > div > button > img {
+    min-height: 200px;
+    min-width: 200px;
 }
 
-.catDiv,
-.dogDiv {
+.charSelect {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
 
 .catDiv:hover .selectName,
