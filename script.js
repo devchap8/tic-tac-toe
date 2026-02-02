@@ -101,7 +101,6 @@ const Game = (function () {
         turn = 0;
 
     }
-    // new
     let playerWins = [0, 0, 0];
     const getPlayerWins = () => [...playerWins];
     function givePlayer1Win() {playerWins[0]++;}
@@ -314,7 +313,33 @@ function displayEndScreen(winner) {
     gameEndInfoDisplay.innerHTML = `${players[0].getName()}: ${wins[0]} Wins - ${players[1].getName()}: ${wins[1]} Wins`
 }
 
-addGridEventListeners();
-addSelectScreenEventListeners();
-addGameStateEventListeners();
+function hideEndScreen() {
+    addGameStateEventListeners();
+    addGridEventListeners();
+    const gameEndScreen = document.querySelector(".gameEndScreen");
+    gameEndScreen.classList.add("hidden");
+}
+
+function addGameEndScreenEventListeners() {
+    const newGameButton = document.querySelector(".newGameButton");
+    const menuReturnButton = document.querySelector(".menuReturnButton");
+    newGameButton.addEventListener("click", function () {
+        hideEndScreen();
+        Game.newRound();
+    });
+    menuReturnButton.addEventListener("click", function () {
+        hideEndScreen();
+        returnToSelect();
+    });
+}
+
+function addAllEventListeners() {
+    addGridEventListeners();
+    addSelectScreenEventListeners();
+    addGameStateEventListeners();
+    addGameEndScreenEventListeners();
+}
+
+addAllEventListeners();
+
       
