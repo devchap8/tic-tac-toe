@@ -90,11 +90,11 @@ const Game = (function () {
     const gameWon = function(player) { 
         const players = getPlayers();
         players.indexOf(player) === 0 ? givePlayer1Win() : givePlayer2Win();
-        console.log(`${player.getName()} won in ${turn} turns!`); 
+        displayEndScreen(player);
     }
     const gameTied = function() { 
         giveTie();
-        console.log("The game ended in a tie!"); 
+        displayEndScreen("It's a tie!");
     }
     function newGame() {
         GameBoard.clearBoard();
@@ -287,6 +287,31 @@ function addMenuReturnEventListener() {
 function returnToSelect() {
     hideGameScreen();
     showSelectScreen();
+}
+
+function removeGameStateEventListeners() {
+    const refresh = document.querySelector(".refresh");
+    refresh.removeEventListener("click", Game.newRound);
+    const exit = document.querySelector(".exit");
+    exit.removeEventListener("click", returnToSelect);
+}
+
+function displayEndScreen(winner) {
+    removeGameStateEventListeners();
+    removeGridEventListeners();
+    const gameEndScreen = document.querySelector(".gameEndScreen");
+    gameEndScreen.classList.remove("hidden");
+    const displayWinner = document.querySelector(".displayWinner");
+    const gameEndInfoDisplay = document.querySelector(".gameEndInfoDisplay");
+    if(winner === "It's a tie!") {
+        displayWinner.innerHTML = "It's a tie!";
+    }
+    else {
+        displayWinner.innerHTML = `${winner.getName()} Won!`;
+    }
+    const wins = Game.getPlayerWins();
+    const players = Game.getPlayers();
+    gameEndInfoDisplay.innerHTML = `${players[0].getName()}: ${wins[0]} Wins - ${players[1].getName()}: ${wins[1]} Wins`
 }
 
 addGridEventListeners();
