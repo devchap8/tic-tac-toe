@@ -59,8 +59,8 @@ const Game = (function () {
         const currentPlayer = players[turn % 2];
         GameBoard.placePiece(currentPlayer.getPiece(), row, column);
         turn++;
-        if (checkWon(currentPlayer)) return gameWon(currentPlayer);
-        if (turn >= 9) return gameTied();
+        if (checkWon(currentPlayer)) gameWon(currentPlayer);
+        if (turn >= 9) gameTied();
         return currentPlayer.getPiece();
         // Return piece to insert into the gameboard
         // This is temporary, final game will have pictures inserted instead of pieces
@@ -86,11 +86,11 @@ const Game = (function () {
     const gameWon = function(player) { 
         const players = getPlayers();
         players.indexOf(player) === 0 ? givePlayer1Win() : givePlayer2Win();
-        return `${player.getName()} won in ${turn} turns!`; 
+        console.log(`${player.getName()} won in ${turn} turns!`); 
     }
     const gameTied = function() { 
         giveTie();
-        "The game ended in a tie!"; 
+        console.log("The game ended in a tie!"); 
     }
     function newGame() {
         GameBoard.clearBoard();
