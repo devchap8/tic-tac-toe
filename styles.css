@@ -109,6 +109,10 @@ body > * {
     background-color: var(--less-dark-gray);
 }
 
+.gridBlock > img {
+    border-radius: 20px;
+}
+
 .gridBlock:hover {
     background-color: var(--even-less-dark-gray);
 }
