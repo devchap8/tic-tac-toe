@@ -279,7 +279,17 @@ function addRestartGameEventListener() {
     refresh.addEventListener("click", Game.newRound);
 }
 
+function addMenuReturnEventListener() {
+    const exit = document.querySelector(".exit");
+    exit.addEventListener("click", returnToSelect);
+}
+
+function returnToSelect() {
+    hideGameScreen();
+    showSelectScreen();
+}
+
 addGridEventListeners();
 addSelectScreenEventListeners();
-addRestartGameEventListener();
+addGameStateEventListeners();
       
