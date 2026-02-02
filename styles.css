@@ -15,6 +15,7 @@
 
 body {
     background-color: var(--dark-gray);
+    position: relative;
 }
 
 body > * {
@@ -209,13 +210,20 @@ body > * {
     background-color: var(--light-brown);
 }
 
-/* .catSelect {
-    background-color: lightcoral;
-}
+/* Game End Screen */
 
-.dogSelect {
-    background-color: lightgreen;
-} */
+.gameEndScreen {
+    position: absolute;
+    left: 0;
+    top: 25%;
+    height: 400px;
+    width: 100%;
+    background-color: var(--even-less-dark-gray);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
 
 
  /* Hide screens (keep at bottom for cascade) */
