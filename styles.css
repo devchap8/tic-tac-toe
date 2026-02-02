@@ -225,6 +225,32 @@ body > * {
     align-items: center;
 }
 
+.displayWinner, 
+.gameEndInfoDisplay {
+    font-size: 3rem;
+    color: var(--dark-brown);
+    font-weight: 600;
+}
+
+.gameEndButtons > button {
+    font-size: 1.5rem;
+    background-color: var(--dark-brown);
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 180px;
+    border-radius: 15px;
+}
+
+.gameEndButtons > button:hover {
+    background-color: var(--light-brown);
+}
+
+.gameEndButtons {
+    display: flex;
+    gap: 100px;
+}
+
 
  /* Hide screens (keep at bottom for cascade) */
 
