@@ -28,7 +28,10 @@ const GameParameters = (function() {
     function addTie() {
         ties++;
     }
-    return {getTurn, getTies, getPlayers, makePlayers, clearGameParameters, addPlayerWin, addTie};
+    function addTurn() {
+        turn++;
+    }
+    return {getTurn, getTies, getPlayers, makePlayers, clearGameParameters, addPlayerWin, addTie, addTurn};
 })();
 
 export {GameParameters};
