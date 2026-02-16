@@ -8,13 +8,12 @@ const GameStateController = (function() {
         return false;
     }
     function checkWon(player) {
-        let gameboard = Gameboard.getGameboard();
-        for(const layout of winLayouts) {
-            if(gameboard[layout[0]] === player.piece && gameboard[layout[1]] === player.piece && gameboard[layout[2]] === player.piece) {
-                return true;
+        return winLayouts.some(
+            function(winLayout) {
+                let gameboard = Gameboard.getGameboard();
+                return winLayout.every((piecePos) => gameboard[piecePos] === player.piece);
             }
-        }
-        return false;
+        );
     }
     return {checkValidMove, checkWon};
 })();
