@@ -8,9 +8,9 @@ const GameStateController = (function() {
         return false;
     }
     function checkWon(player) {
+        let gameboard = Gameboard.getGameboard();
         return winLayouts.some(
             function(winLayout) {
-                let gameboard = Gameboard.getGameboard();
                 return winLayout.every((piecePos) => gameboard[piecePos] === player.piece);
             }
         );
