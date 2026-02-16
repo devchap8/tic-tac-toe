@@ -12,6 +12,8 @@ const GameDisplayController = (function() {
     const p2Wins = document.querySelector(".rightArea .playerWins");
     const ties = document.querySelector(".ties");
     const gridBlocks = Array.from(document.querySelectorAll(".gridBlock"));
+    const gameWinnerDisplay = document.querySelector(".displayWinner");
+    const gameEndInfoDisplay = document.querySelector(".gameEndInfoDisplay");
 
     function toggleSelectScreen() {
         selectScreen.classList.contains("hidden") ? selectScreen.classList.remove("hidden") : selectScreen.classList.add("hidden");
@@ -41,7 +43,24 @@ const GameDisplayController = (function() {
         gridBlocks[pos].innerHTML = `<img src="${player.piece}" height="125px">`;
     }
 
-    return {toggleSelectScreen, toggleGameScreen, toggleGameEndScreen, displayPlayerInfo, displayWinsTies, displayPiece};
+    function displayGameWinner(player) {
+        gameWinnerDisplay.innerHTML = `${player.name} Won!`;
+        displayGameEnd();
+    }
+    function displayGameTied() {
+        gameWinnerDisplay.innerHTML = "The game ended in a tie!";
+        ties.innerHTML = `Ties: ${GameParameters.getTies()}`; // To show the updated tie count below the end screen
+        displayGameEnd();
+    }
+    function displayGameEnd() {
+        const players = GameParameters.getPlayers();
+        gameEndInfoDisplay.innerHTML = `${players[0].name}: ${players[0].wins} Wins - ${players[1].name}: ${players[1].wins} Wins`;
+        toggleGameEndScreen();
+    }
+
+    return {toggleSelectScreen, toggleGameScreen, toggleGameEndScreen, displayPlayerInfo, displayWinsTies, displayPiece, 
+        displayGameWinner, displayGameTied
+    };
 })();
 
 export {GameDisplayController}

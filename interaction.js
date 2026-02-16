@@ -5,6 +5,7 @@ import { GameStateController } from "./gameStateController.js";
 
 const Interaction = (function() {
     const gameGrid = document.querySelector(".gameGrid");
+
     const addGameGridEventListener = () => gameGrid.addEventListener("click", playerClicksGrid);
     const removeGameGridEventListener = () => gameGrid.removeEventListener("click", playerClicksGrid);
     function playerClicksGrid(event) {
@@ -18,18 +19,16 @@ const Interaction = (function() {
             Gameboard.placePiece(currentPlayer.piece, currentPos);
             GameDisplayController.displayPiece(currentPlayer, currentPos);
             if(GameStateController.checkWon(currentPlayer)) {
-                gameWon(currentPlayer);
+                GameParameters.addPlayerWin(currentPlayer);
+                removeGameGridEventListener();
+                GameDisplayController.displayGameWinner(currentPlayer);
             }
             else if(turn >=  8) {
-                gameTied();
+                GameParameters.addTie();
+                removeGameGridEventListener();
+                GameDisplayController.displayGameTied();
             }
         }
-    }
-    function gameWon(player) {
-        console.log(`${player.name} win in ${GameParameters.getTurn()} turns!`);
-    }
-    function gameTied() {
-        console.log("The game ends in a tie!");
     }
     return {addGameGridEventListener}
 })();

@@ -22,8 +22,8 @@ const GameParameters = (function() {
         ties = 0;
         players = [];
     }
-    function addPlayerWin(playerIndex) {
-        players[playerIndex].wins++;
+    function addPlayerWin(player) {
+        player.wins++;
     }
     function addTie() {
         ties++;
