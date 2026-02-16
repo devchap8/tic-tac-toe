@@ -11,6 +11,7 @@ const GameDisplayController = (function() {
     const p1Wins = document.querySelector(".leftArea .playerWins");
     const p2Wins = document.querySelector(".rightArea .playerWins");
     const ties = document.querySelector(".ties");
+    const gridBlocks = Array.from(document.querySelectorAll(".gridBlock"));
 
     function toggleSelectScreen() {
         selectScreen.classList.contains("hidden") ? selectScreen.classList.remove("hidden") : selectScreen.classList.add("hidden");
@@ -36,8 +37,11 @@ const GameDisplayController = (function() {
         p2Wins.innerHTML = `Wins: ${players[1].wins}`;
         ties.innerHTML = `Ties: ${tieCount}`;
     }
+    function displayPiece(player, pos) {
+        gridBlocks[pos].innerHTML = `<img src="${player.piece}" height="125px">`;
+    }
 
-    return {toggleSelectScreen, toggleGameScreen, toggleGameEndScreen, displayPlayerInfo, displayWinsTies};
+    return {toggleSelectScreen, toggleGameScreen, toggleGameEndScreen, displayPlayerInfo, displayWinsTies, displayPiece};
 })();
 
 export {GameDisplayController}
