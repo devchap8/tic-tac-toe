@@ -18,9 +18,11 @@ const GameParameters = (function() {
     }
     const getPlayers = () => [...players];
     function clearGameParameters() {
-        turn = 0;
         ties = 0;
         players = [];
+    }
+    function clearTurns() {
+        turn = 0;
     }
     function addPlayerWin(player) {
         player.wins++;
@@ -31,7 +33,7 @@ const GameParameters = (function() {
     function addTurn() {
         turn++;
     }
-    return {getTurn, getTies, getPlayers, makePlayers, clearGameParameters, addPlayerWin, addTie, addTurn};
+    return {getTurn, getTies, getPlayers, makePlayers, clearGameParameters, clearTurns, addPlayerWin, addTie, addTurn};
 })();
 
 export {GameParameters};

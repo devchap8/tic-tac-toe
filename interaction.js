@@ -5,6 +5,10 @@ import { GameStateController } from "./gameStateController.js";
 
 const Interaction = (function() {
     const gameGrid = document.querySelector(".gameGrid");
+    const newGameButton = document.querySelector(".newGameButton");
+    const menuReturnButton = document.querySelector(".menuReturnButton");
+    const refreshButton = document.querySelector(".refresh");
+    const exitButton = document.querySelector(".exit");
 
     const addGameGridEventListener = () => gameGrid.addEventListener("click", playerClicksGrid);
     const removeGameGridEventListener = () => gameGrid.removeEventListener("click", playerClicksGrid);
@@ -20,17 +24,41 @@ const Interaction = (function() {
             GameDisplayController.displayPiece(currentPlayer, currentPos);
             if(GameStateController.checkWon(currentPlayer)) {
                 GameParameters.addPlayerWin(currentPlayer);
-                removeGameGridEventListener();
+                removeGameGridEventListener(); // Put these into 1 function later
+                removeRefreshButtonEventListener();
                 GameDisplayController.displayGameWinner(currentPlayer);
             }
             else if(turn >=  8) {
                 GameParameters.addTie();
-                removeGameGridEventListener();
+                removeGameGridEventListener(); // Put these into 1 function later
+                removeRefreshButtonEventListener();
                 GameDisplayController.displayGameTied();
             }
         }
     }
-    return {addGameGridEventListener}
+
+    const addRefreshButtonEventListener = () => refreshButton.addEventListener("click", newRound);
+    const removeRefreshButtonEventListener = () => refreshButton.removeEventListener("click", newRound);
+    function newRound() {
+        GameParameters.clearTurns();
+        Gameboard.clearBoard();
+        GameDisplayController.clearGrid();
+        GameDisplayController.displayWinsTies();
+        addGameGridEventListener(); // Put these into 1 function later
+        addRefreshButtonEventListener();
+    }
+    const addNewGameButtonEventListener = () => newGameButton.addEventListener("click", function () {
+        GameDisplayController.toggleGameEndScreen();
+        newRound();
+    })
+
+    function addEventListeners() {
+        addGameGridEventListener();
+        addRefreshButtonEventListener();
+        addNewGameButtonEventListener();
+    }
+
+    return {addEventListeners}
 })();
 
 export {Interaction}

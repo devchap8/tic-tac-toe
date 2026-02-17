@@ -42,6 +42,9 @@ const GameDisplayController = (function() {
     function displayPiece(player, pos) {
         gridBlocks[pos].innerHTML = `<img src="${player.piece}" height="125px">`;
     }
+    function clearGrid() {
+        gridBlocks.forEach((block) => block.innerHTML = "");
+    }
 
     function displayGameWinner(player) {
         gameWinnerDisplay.innerHTML = `${player.name} Won!`;
@@ -49,17 +52,17 @@ const GameDisplayController = (function() {
     }
     function displayGameTied() {
         gameWinnerDisplay.innerHTML = "The game ended in a tie!";
-        ties.innerHTML = `Ties: ${GameParameters.getTies()}`; // To show the updated tie count below the end screen
         displayGameEnd();
     }
     function displayGameEnd() {
+        displayWinsTies();
         const players = GameParameters.getPlayers();
         gameEndInfoDisplay.innerHTML = `${players[0].name}: ${players[0].wins} Wins - ${players[1].name}: ${players[1].wins} Wins`;
         toggleGameEndScreen();
     }
 
     return {toggleSelectScreen, toggleGameScreen, toggleGameEndScreen, displayPlayerInfo, displayWinsTies, displayPiece, 
-        displayGameWinner, displayGameTied
+        displayGameWinner, displayGameTied, clearGrid
     };
 })();
 

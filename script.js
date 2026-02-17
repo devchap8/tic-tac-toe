@@ -19,4 +19,4 @@ GameDisplayController.toggleGameScreen();
 GameDisplayController.displayPlayerInfo();
 GameDisplayController.displayWinsTies();
 
-Interaction.addGameGridEventListener();
+Interaction.addEventListeners();
